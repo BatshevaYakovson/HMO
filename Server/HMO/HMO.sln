@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33627.172
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HMO", "HMO\HMO.csproj", "{13067885-C1E9-4788-818F-94C3F898E0B6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HMO", "HMO\HMO.csproj", "{13067885-C1E9-4788-818F-94C3F898E0B6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Repositories", "Repositories\Repositories.csproj", "{31CD5718-7E23-4BAF-B2D0-088747C4D89D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Services\Services.csproj", "{6DD2616C-DE52-49FC-81CA-011F9B4E4562}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{13067885-C1E9-4788-818F-94C3F898E0B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{13067885-C1E9-4788-818F-94C3F898E0B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{13067885-C1E9-4788-818F-94C3F898E0B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{31CD5718-7E23-4BAF-B2D0-088747C4D89D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31CD5718-7E23-4BAF-B2D0-088747C4D89D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31CD5718-7E23-4BAF-B2D0-088747C4D89D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31CD5718-7E23-4BAF-B2D0-088747C4D89D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6DD2616C-DE52-49FC-81CA-011F9B4E4562}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6DD2616C-DE52-49FC-81CA-011F9B4E4562}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6DD2616C-DE52-49FC-81CA-011F9B4E4562}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6DD2616C-DE52-49FC-81CA-011F9B4E4562}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

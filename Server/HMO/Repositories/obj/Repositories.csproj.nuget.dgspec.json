@@ -1,23 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\מוישי וורדית\\Source\\Repos\\HMO\\Repositories\\Repositories.csproj": {}
+    "C:\\Users\\בת שבע\\Documents\\GitHub\\HMO\\Server\\HMO\\Repositories\\Repositories.csproj": {}
   },
   "projects": {
-    "C:\\Users\\מוישי וורדית\\Source\\Repos\\HMO\\Repositories\\Repositories.csproj": {
+    "C:\\Users\\בת שבע\\Documents\\GitHub\\HMO\\Server\\HMO\\Repositories\\Repositories.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\מוישי וורדית\\Source\\Repos\\HMO\\Repositories\\Repositories.csproj",
+        "projectUniqueName": "C:\\Users\\בת שבע\\Documents\\GitHub\\HMO\\Server\\HMO\\Repositories\\Repositories.csproj",
         "projectName": "Repositories",
-        "projectPath": "C:\\Users\\מוישי וורדית\\Source\\Repos\\HMO\\Repositories\\Repositories.csproj",
-        "packagesPath": "C:\\Users\\מוישי וורדית\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\מוישי וורדית\\Source\\Repos\\HMO\\Repositories\\obj\\",
+        "projectPath": "C:\\Users\\בת שבע\\Documents\\GitHub\\HMO\\Server\\HMO\\Repositories\\Repositories.csproj",
+        "packagesPath": "C:\\Users\\בת שבע\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\בת שבע\\Documents\\GitHub\\HMO\\Server\\HMO\\Repositories\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\מוישי וורדית\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\בת שבע\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -42,6 +43,28 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
+          "dependencies": {
+            "EntityFramework": {
+              "target": "Package",
+              "version": "[6.4.4, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.5, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[7.0.5, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.5, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
