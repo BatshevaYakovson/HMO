@@ -7,19 +7,29 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
-
-function createData(fullname, id, fullAddress, phone, cellphone,bornDate) {
-  return { fullname, id, fullAddress, phone, cellphone,bornDate };
+import { useState } from 'react';
+import DiseaseAdditionForm from './DiseaseAdditionForm';
+function createData(fullname, id, fullAddress, phone, cellphone, bornDate) {
+  return { fullname, id, fullAddress, phone, cellphone, bornDate };
 }
 
 const rows = [
-  createData('Reut Shimborski', 258147369, 'finkel 11 PT' , '0533193587' , '039038976','2020-01-02'),
-  createData('Reut Shimborski', 258147369, 'finkel 11 PT' , '0533193587' , '039038976','2020-01-02'),  
-  createData('Reut Shimborski', 258147369, 'finkel 11 PT' , '0533193587' , '039038976','2020-01-02'), 
-   createData('Reut Shimborski', 258147369, 'finkel 11 PT' , '0533193587' , '039038976','2020-01-02'),
+  createData('Reut Shimborski', 258147369, 'finkel 11 PT', '0533193587', '039038976', '2020-01-02'),
+  createData('Reut Shimborski', 258147368, 'finkel 11 PT', '0533193587', '039038976', '2020-01-02'),
+  createData('Reut Shimborski', 258147369, 'finkel 11 PT', '0533193587', '039038976', '2020-01-02'),
+  createData('Reut Shimborski', 258147369, 'finkel 11 PT', '0533193587', '039038976', '2020-01-02'),
 ];
 
 export default function EmployeeLists() {
+  const [open, setOpen] = useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -50,10 +60,15 @@ export default function EmployeeLists() {
               <TableCell align="right">{row.phone}</TableCell>
               <TableCell align="right">{row.cellphone}</TableCell>
               <TableCell align="right">{row.bornDate}</TableCell>
-              <TableCell align='right'><Button>add disease</Button></TableCell>
-              <TableCell align='right'><Button>add vaccine</Button></TableCell>
+              <TableCell align='right'>    <Button variant="outlined" onClick={handleClickOpen}>
+                add disease
+              </Button>   <DiseaseAdditionForm handleClose={handleClose} employeeId={row.id} open={open} /> </TableCell>
 
+
+              <TableCell><Button variant="outlined" onClick={handleClickOpen}>
+                add vaccine   </Button></TableCell>
             </TableRow>
+
           ))}
         </TableBody>
       </Table>
