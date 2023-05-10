@@ -9,6 +9,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import './AdditionForm.css'
+import InputLabel from '@mui/material/InputLabel';
 
 import Dialog from '@mui/material/Dialog';
 import Button from '@mui/material/Button';
@@ -74,7 +75,7 @@ export default function EmplVaccinationAdditionForm({ handleClose, open, employe
     }
     return (
         <Dialog open={open} onClose={handleClose}>
-            <DialogTitle>Subscribe</DialogTitle>
+            <DialogTitle>Add vaccination for employee</DialogTitle>
             <DialogContent>
                 <Box onSubmit={handleSubmit}
                     component="form"
@@ -86,10 +87,11 @@ export default function EmplVaccinationAdditionForm({ handleClose, open, employe
                 >
                     <div className='box'>
 
-                        {/* <InputLabel id="demo-simple-select-label">select vaccination</InputLabel> */}
+                        <InputLabel id="selectVaccination">select vaccination</InputLabel>
                         <Select
-                            labelId="demo-simple-select-label"
-                            id="demo-simple-select"
+
+                            labelId="selectVaccination"
+                            id="selectVaccination"
                             value={vaccinationInfo.vaccinationId}
                             label="vaccination"
                             onChange={handleChange}

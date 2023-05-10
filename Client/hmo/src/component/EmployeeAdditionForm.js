@@ -57,7 +57,7 @@ export default function EmployeeAdditionForm({ handleClose, open }) {
     }
     return (
         <Dialog open={open} onClose={handleClose}>
-            <DialogTitle>Subscribe</DialogTitle>
+            <DialogTitle>Add employee</DialogTitle>
             <DialogContent>
                 <Box onSubmit={handleSubmit}
                     component="form"

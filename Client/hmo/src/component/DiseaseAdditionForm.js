@@ -25,8 +25,13 @@ export default function DiseaseAdditionForm({ handleClose, open, employeeId }) {
 
 
     const handleChangeDate = (x, field) => {
-        let value = JSON.stringify(x);
-        setContactInfo({ ...contactInfo, [field]: value });
+
+        let value = new Date(x).toISOString();
+        if (field === 'positiveResultDate')
+            setContactInfo({ ...contactInfo, positiveResultDate: value });
+        else
+            setContactInfo({ ...contactInfo, recoveryDate: value });
+
     };
 
     const handleSubmit = (event) => {
@@ -52,7 +57,7 @@ export default function DiseaseAdditionForm({ handleClose, open, employeeId }) {
     }
     return (
         <Dialog open={open} onClose={handleClose}>
-            <DialogTitle>Subscribe</DialogTitle>
+            <DialogTitle>Add disease</DialogTitle>
             <DialogContent>
                 <Box onSubmit={handleSubmit}
                     component="form"
@@ -66,9 +71,9 @@ export default function DiseaseAdditionForm({ handleClose, open, employeeId }) {
 
                         <LocalizationProvider dateAdapter={AdapterDayjs}>
                             <DemoContainer components={['DatePicker', 'DatePicker']}>
-                                <DatePicker name='positiveResultDate' label="born date" color="secondary" defaultValue={dayjs('2022-05-08')} focused
+                                <DatePicker name='positiveResultDate' label="Positive result" color="secondary" defaultValue={dayjs('2022-05-08')} focused
                                     onChange={(x) => handleChangeDate(x, 'positiveResultDate')} />
-                                <DatePicker name='recoveryDate' label="born date" color="secondary" defaultValue={dayjs('2022-05-08')}
+                                <DatePicker name='recoveryDate' label="recovery date" color="secondary" defaultValue={dayjs('2022-05-08')}
                                     focused onChange={(x) => handleChangeDate(x, 'recoveryDate')} />
 
                             </DemoContainer>
