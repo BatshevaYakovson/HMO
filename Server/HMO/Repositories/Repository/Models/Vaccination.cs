@@ -15,4 +15,7 @@ public partial class Vaccination
     [StringLength(50)]
     [Unicode(false)]
     public string? Manufacturer { get; set; }
+
+    [InverseProperty("Vaccination")]
+    public virtual ICollection<EmplVaccination>? EmplVaccinations { get; set; } = new List<EmplVaccination>();
 }

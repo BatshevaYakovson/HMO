@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useState, useEffect } from "react";
-import axios from 'axios'
+
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import dayjs from 'dayjs';
@@ -9,47 +9,64 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import './AdditionForm.css'
+
 import Dialog from '@mui/material/Dialog';
 import Button from '@mui/material/Button';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
 
-export default function EmployeeAdditionForm({ handleClose, open }) {
-    const [contactInfo, setContactInfo] = useState({
-        EmployeeId: "",
-        fullName: "",
-        address: "",
-        cellPhone: "",
-        phone: "",
-        bornDate: ""
+export default function EmplVaccinationAdditionForm({ handleClose, open, employeeId }) {
+    const [vaccinations, setVaccinations] = useState([])
+    const [vaccinationInfo, setVaccinationInfo] = useState({
+        vaccinationId: "",
+        employeeId,
+        date: ""
     });
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const res = await fetch('https://localhost:7197/api/Vaccination', { mode: 'cors' });
+                const json = await res.json();
+                console.log(json);
+                setVaccinations(json);
+            }
+            catch (e) {
+                console.log(e);
+            }
 
+        }
+        fetchData();
+
+    }, []);
+
+    const handleChangeDate = (x, field) => {
+        let value = new Date(x).toISOString();
+        setVaccinationInfo({ ...vaccinationInfo, [field]: value });
+    };
 
     const handleChange = (event) => {
-        setContactInfo({ ...contactInfo, [event.target.name]: event.target.value });
-    };
-    const handleChangeDate = (x) => {
-        let value = new Date(x).toISOString();
-        setContactInfo({ ...contactInfo, bornDate: value });
+        setVaccinationInfo({ ...vaccinationInfo, vaccinationId: event.target.value });
     };
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log(contactInfo);
-        setContactInfo({ fullName: "", EmployeeId: "", address: "", cellPhone: "", phone: "", bornDate: "" });
+        console.log(vaccinationInfo);
+        setVaccinationInfo({ date: "" });
         handleClose();
-        createUser();
-
+        createEmplVaccination();
     };
-    const createUser = () => {
+
+    const createEmplVaccination = () => {
         const requestOption = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(contactInfo),
+            body: JSON.stringify(vaccinationInfo),
             mode: 'cors'
         }
-        fetch('https://localhost:7197/api/Employee', requestOption).then(async res => {
+        fetch('https://localhost:7197/api/EmplVaccination', requestOption).then(async res => {
             const data = await res.json();
 
             console.log(data)
@@ -68,14 +85,23 @@ export default function EmployeeAdditionForm({ handleClose, open }) {
                     autoComplete="off"
                 >
                     <div className='box'>
-                        <TextField name='fullName' label="full name" color="secondary" value={contactInfo.fullName} focused onChange={handleChange} />
-                        <TextField name="EmployeeId" label="id" type='tel' color="secondary" value={contactInfo.EmployeeId} focused onChange={handleChange} />
-                        <TextField name='address' label="full address" color="secondary" value={contactInfo.address} focused onChange={handleChange} />
-                        <TextField name='cellPhone' type='tel' label="cellPhone" color="secondary" value={contactInfo.cellPhone} focused onChange={handleChange} />
-                        <TextField name='phone' type='tel' label="phone" color="secondary" value={contactInfo.phone} focused onChange={handleChange} />
+
+                        {/* <InputLabel id="demo-simple-select-label">select vaccination</InputLabel> */}
+                        <Select
+                            labelId="demo-simple-select-label"
+                            id="demo-simple-select"
+                            value={vaccinationInfo.vaccinationId}
+                            label="vaccination"
+                            onChange={handleChange}
+                        >
+                            {vaccinations.map(v => <MenuItem value={v.vaccinationId}>{v.manufacturer}</MenuItem>)}
+
+
+                        </Select>
                         <LocalizationProvider dateAdapter={AdapterDayjs}>
                             <DemoContainer components={['DatePicker', 'DatePicker']}>
-                                <DatePicker name='bornDate' label="born date" color="secondary" defaultValue={dayjs('2022-05-08')} focused onChange={handleChangeDate} />
+                                <DatePicker name='date' label="date" color="secondary" defaultValue={dayjs('2022-05-08')} focused
+                                    onChange={(x) => handleChangeDate(x, 'date')} />
 
                             </DemoContainer>
                         </LocalizationProvider>

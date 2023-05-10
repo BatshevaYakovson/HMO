@@ -10,7 +10,7 @@ namespace Repositories.Repository.Models;
 public partial class Disease
 {
     [Key]
-    public int EmployeeId { get; set; }
+    public long EmployeeId { get; set; }
 
     [Column(TypeName = "date")]
     public DateTime? PositiveResult { get; set; }
@@ -18,6 +18,7 @@ public partial class Disease
     [Column(TypeName = "date")]
     public DateTime? Recovery { get; set; }
 
-    [InverseProperty("EmployeeNavigation")]
-    public virtual Employee? Employee { get; set; }
+    [ForeignKey("EmployeeId")]
+    [InverseProperty("Disease")]
+    public virtual Employee? Employee { get; set; } = null!;
 }

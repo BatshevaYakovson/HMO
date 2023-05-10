@@ -7,29 +7,53 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import DiseaseAdditionForm from './DiseaseAdditionForm';
-function createData(fullname, id, fullAddress, phone, cellphone, bornDate) {
-  return { fullname, id, fullAddress, phone, cellphone, bornDate };
-}
+import EmplVaccinationAdditionForm from './EmplVaccinationAdditionForm'
 
-const rows = [
-  createData('Reut Shimborski', 258147369, 'finkel 11 PT', '0533193587', '039038976', '2020-01-02'),
-  createData('Reut Shimborski', 258147368, 'finkel 11 PT', '0533193587', '039038976', '2020-01-02'),
-  createData('Reut Shimborski', 258147369, 'finkel 11 PT', '0533193587', '039038976', '2020-01-02'),
-  createData('Reut Shimborski', 258147369, 'finkel 11 PT', '0533193587', '039038976', '2020-01-02'),
-];
+
 
 export default function EmployeeLists() {
+  const [employees, setEmployees] = useState([]);
   const [open, setOpen] = useState(false);
+  const [openVaccine, setVaccineOpen] = useState(false);
 
-  const handleClickOpen = () => {
-    setOpen(true);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await fetch('https://localhost:7197/api/Employee', { mode: 'cors' });
+        const json = await res.json();
+        console.log(json);
+        setEmployees(json);
+      }
+      catch (e) {
+        console.log(e);
+      }
+
+    }
+    fetchData();
+
+  }, []);
+
+  const handleClickOpen = (popupType) => {
+    if (popupType === 'vaccine') {
+      setVaccineOpen(true);
+    }
+    else {
+      setOpen(true);
+    }
   };
 
-  const handleClose = () => {
-    setOpen(false);
+  const handleClose = (popupType) => {
+    if (popupType === 'vaccine') {
+      setVaccineOpen(false);
+    }
+    else {
+      setOpen(false);
+    }
   };
+
+
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -37,36 +61,37 @@ export default function EmployeeLists() {
           <TableRow>
             <TableCell>Name </TableCell>
             <TableCell align="right">Id</TableCell>
-            <TableCell align="right">address</TableCell>
+            <TableCell align="right">Address</TableCell>
             <TableCell align="right">Phone</TableCell>
-            <TableCell align="right">Cellphone</TableCell>
-            <TableCell align="right">born Date</TableCell>
-            <TableCell align='right'>disease details</TableCell>
-            <TableCell align='right'>vaccine details</TableCell>
+            <TableCell align="right">CellPhone</TableCell>
+            <TableCell align="right">Born Date</TableCell>
+            <TableCell align='right'>Disease details</TableCell>
+            <TableCell align='right'>Vaccine details</TableCell>
 
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
+          {employees.map((row) => (
             <TableRow
               key={row.name}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
-              <TableCell component="th" scope="row">
-                {row.fullname}
-              </TableCell>
-              <TableCell align="right">{row.id}</TableCell>
-              <TableCell align="right">{row.fullAddress}</TableCell>
+              <TableCell component="th" scope="row">{row.fullName}</TableCell>
+              <TableCell align="right">{row.employeeId}</TableCell>
+              <TableCell align="right">{row.address}</TableCell>
               <TableCell align="right">{row.phone}</TableCell>
-              <TableCell align="right">{row.cellphone}</TableCell>
+              <TableCell align="right">{row.cellPhone}</TableCell>
               <TableCell align="right">{row.bornDate}</TableCell>
-              <TableCell align='right'>    <Button variant="outlined" onClick={handleClickOpen}>
-                add disease
-              </Button>   <DiseaseAdditionForm handleClose={handleClose} employeeId={row.id} open={open} /> </TableCell>
+              <TableCell align='right'>
+                <Button variant="outlined" onClick={handleClickOpen}>  add disease </Button>
+                <DiseaseAdditionForm handleClose={handleClose} employeeId={row.employeeId} open={open} />
+              </TableCell>
 
 
-              <TableCell><Button variant="outlined" onClick={handleClickOpen}>
-                add vaccine   </Button></TableCell>
+              <TableCell><Button variant="outlined" onClick={() => handleClickOpen('vaccine')}>
+                add vaccine   </Button>
+                <EmplVaccinationAdditionForm handleClose={() => handleClose('vaccine')} employeeId={row.employeeId} open={openVaccine} />
+              </TableCell>
             </TableRow>
 
           ))}

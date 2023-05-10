@@ -34,8 +34,22 @@ export default function DiseaseAdditionForm({ handleClose, open, employeeId }) {
         console.log(contactInfo);
         setContactInfo({ recoveryDate: "", positiveResultDate: "", });
         handleClose();
+        createDisease();
     };
 
+    const createDisease = () => {
+        const requestOption = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(contactInfo),
+            mode: 'cors'
+        }
+        fetch('https://localhost:7197/api/Disease', requestOption).then(async res => {
+            const data = await res.json();
+
+            console.log(data)
+        }).catch(e => console.log(e))
+    }
     return (
         <Dialog open={open} onClose={handleClose}>
             <DialogTitle>Subscribe</DialogTitle>
@@ -52,10 +66,10 @@ export default function DiseaseAdditionForm({ handleClose, open, employeeId }) {
 
                         <LocalizationProvider dateAdapter={AdapterDayjs}>
                             <DemoContainer components={['DatePicker', 'DatePicker']}>
-                                <DatePicker name='positiveResultDate' label="born date" color="secondary" defaultValue={dayjs('2022-05-08')} focused 
-                                onChange={(x) => handleChangeDate(x, 'positiveResultDate')} />
-                                <DatePicker name='recoveryDate' label="born date" color="secondary" defaultValue={dayjs('2022-05-08')} 
-                                focused onChange={(x) => handleChangeDate(x, 'recoveryDate')} />
+                                <DatePicker name='positiveResultDate' label="born date" color="secondary" defaultValue={dayjs('2022-05-08')} focused
+                                    onChange={(x) => handleChangeDate(x, 'positiveResultDate')} />
+                                <DatePicker name='recoveryDate' label="born date" color="secondary" defaultValue={dayjs('2022-05-08')}
+                                    focused onChange={(x) => handleChangeDate(x, 'recoveryDate')} />
 
                             </DemoContainer>
                         </LocalizationProvider>

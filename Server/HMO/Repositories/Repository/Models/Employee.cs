@@ -10,7 +10,7 @@ namespace Repositories.Repository.Models;
 public partial class Employee
 {
     [Key]
-    public int EmployeeId { get; set; }
+    public long EmployeeId { get; set; }
 
     [StringLength(50)]
     [Unicode(false)]
@@ -23,11 +23,17 @@ public partial class Employee
     [Column(TypeName = "date")]
     public DateTime? BornDate { get; set; }
 
-    public int? Phone { get; set; }
+    [StringLength(10)]
+    [Unicode(false)]
+    public string? Phone { get; set; }
 
-    public int? CellPhone { get; set; }
+    [StringLength(10)]
+    [Unicode(false)]
+    public string? CellPhone { get; set; }
 
-    [ForeignKey("EmployeeId")]
     [InverseProperty("Employee")]
-    public virtual Disease EmployeeNavigation { get; set; } = null!;
+    public virtual Disease? Disease { get; set; }
+
+    [InverseProperty("Employee")]
+    public virtual ICollection<EmplVaccination> EmplVaccinations { get; set; } = new List<EmplVaccination>();
 }
