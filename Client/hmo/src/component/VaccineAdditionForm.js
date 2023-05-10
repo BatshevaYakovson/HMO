@@ -52,9 +52,9 @@ export default function VaccineAdditionForm({ handleClose, open, employeeId }) {
 
                         <LocalizationProvider dateAdapter={AdapterDayjs}>
                             <DemoContainer components={['DatePicker', 'DatePicker']}>
-                             
-                                <DatePicker name='VaccinationDate' label="born date" color="secondary" defaultValue={dayjs('2022-05-08')} 
-                                focused onChange={(x) => handleChangeDate(x, 'recoveryDate')} />
+
+                                <DatePicker name='VaccinationDate' label="born date" color="secondary" defaultValue={dayjs('2022-05-08')}
+                                    focused onChange={(x) => handleChangeDate(x, 'recoveryDate')} />
 
                             </DemoContainer>
                         </LocalizationProvider>

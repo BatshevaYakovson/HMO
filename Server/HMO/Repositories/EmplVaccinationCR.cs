@@ -62,7 +62,7 @@ namespace Repositories
             {
                 using (HmoDbContext ctx = new())
                 {
-                    return ctx.EmplVaccinations.Count(a => a.EmployeeId == id);
+                    return ctx.EmplVaccinations.Count(a => a.EmplVaccinationId == id);
                 }
             }
 
