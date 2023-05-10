@@ -2,6 +2,7 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
+/Server/HMO/.vs/*
 /Server/HMO/.vs/HMO/FileContentIndex/3e1292a9-00a2-4a78-a923-5c6f1df96a71.vsidx
 /Server/HMO/.vs/HMO/config/applicationhost.config
 /Server/HMO/.vs/HMO/DesignTimeBuild/.dtbcache.v2
@@ -14,6 +15,7 @@
 /Server/HMO/.vs/HMO/FileContentIndex/e50504b1-25ba-4c81-b2f7-98b4e28418bb.vsidx
 /Server/HMO/.vs/ProjectEvaluation/hmo.metadata.v6.1
 /Server/HMO/.vs/ProjectEvaluation/hmo.projects.v6.1
+/Server/HMO/HMO/bin/*
 /Server/HMO/HMO/bin/Debug/net6.0/HMO.dll
 /Server/HMO/HMO/bin/Debug/net6.0/HMO.pdb
 /Server/HMO/HMO/bin/Debug/net6.0/Repositories.pdb
@@ -22,6 +24,7 @@
 /Server/HMO/HMO/bin/Debug/net6.0/Services.pdb
 /Server/HMO/.vs/HMO/v17/.suo
 /Server/HMO/.vs/HMO/v17/.futdcache.v2
+/Server/HMO/Repositories/bin/*
 /Server/HMO/Repositories/bin/Debug/net6.0/Repositories.pdb
 /Server/HMO/Repositories/bin/Debug/net6.0/Repositories.dll
 /Server/HMO/Repositories/obj/Debug/net6.0/ref/Repositories.dll
@@ -29,6 +32,7 @@
 /Server/HMO/Repositories/obj/Debug/net6.0/Repositories.csproj.CoreCompileInputs.cache
 /Server/HMO/Repositories/obj/Debug/net6.0/Repositories.pdb
 /Server/HMO/Repositories/obj/Debug/net6.0/Repositories.dll
+/Server/HMO/HMO/obj/*
 /Server/HMO/HMO/obj/Debug/net6.0/ref/HMO.dll
 /Server/HMO/HMO/obj/Debug/net6.0/refint/HMO.dll
 /Server/HMO/HMO/obj/Debug/net6.0/HMO.csproj.AssemblyReference.cache
@@ -39,6 +43,7 @@
 /Server/HMO/Services/bin/Debug/net6.0/Repositories.pdb
 /Server/HMO/Services/bin/Debug/net6.0/Services.dll
 /Server/HMO/Services/bin/Debug/net6.0/Services.pdb
+/Server/HMO/Services/obj/*
 /Server/HMO/Services/obj/Debug/net6.0/ref/Services.dll
 /Server/HMO/Services/obj/Debug/net6.0/refint/Services.dll
 /Server/HMO/Services/obj/Debug/net6.0/Services.csproj.AssemblyReference.cache
