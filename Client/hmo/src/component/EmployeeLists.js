@@ -18,6 +18,7 @@ export default function EmployeeLists() {
         const res = await fetch('https://localhost:7197/api/Employee', { mode: 'cors' });
         const json = await res.json();
         console.log(json);
+        setEmployees(json);
 
       }
       catch (e) {
