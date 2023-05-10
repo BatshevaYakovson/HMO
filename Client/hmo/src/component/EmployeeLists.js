@@ -1,15 +1,9 @@
 import * as React from 'react';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
-import Button from '@mui/material/Button';
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button, Typography } from '@mui/material';
 import { useState, useEffect } from 'react';
 import DiseaseAdditionForm from './DiseaseAdditionForm';
-import EmplVaccinationAdditionForm from './EmplVaccinationAdditionForm'
+import EmplVaccinations from './EmplVaccinations';
+import EmplVaccinationAdditionForm from './EmplVaccinationAdditionForm';
 
 
 
@@ -24,7 +18,7 @@ export default function EmployeeLists() {
         const res = await fetch('https://localhost:7197/api/Employee', { mode: 'cors' });
         const json = await res.json();
         console.log(json);
-        setEmployees(json);
+
       }
       catch (e) {
         console.log(e);
@@ -34,6 +28,8 @@ export default function EmployeeLists() {
     fetchData();
 
   }, []);
+
+
 
   const handleClickOpen = (popupType) => {
     if (popupType === 'vaccine') {
@@ -83,14 +79,21 @@ export default function EmployeeLists() {
               <TableCell align="right">{row.cellPhone}</TableCell>
               <TableCell align="right">{row.bornDate}</TableCell>
               <TableCell align='right'>
-                <Button variant="outlined" onClick={handleClickOpen}>  add disease </Button>
-                <DiseaseAdditionForm handleClose={handleClose} employeeId={row.employeeId} open={open} />
+                {row.disease ? (<>
+                  <Typography>positive result Date: {row.disease.positiveResultDate}</Typography>
+                  <Typography>recovery Date: {row.disease.recoveryDate}</Typography>
+                </>) :
+
+                  (<><Button variant="outlined" onClick={handleClickOpen}>  add disease </Button>
+                    <DiseaseAdditionForm handleClose={handleClose} employeeId={row.employeeId} open={open} /></>)
+                }
               </TableCell>
 
 
               <TableCell><Button variant="outlined" onClick={() => handleClickOpen('vaccine')}>
                 add vaccine   </Button>
                 <EmplVaccinationAdditionForm handleClose={() => handleClose('vaccine')} employeeId={row.employeeId} open={openVaccine} />
+                <EmplVaccinations emplVaccinations={row.emplVaccinations} ></EmplVaccinations>
               </TableCell>
             </TableRow>
 
