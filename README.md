@@ -14,7 +14,8 @@ To run it please do this cmds on terminal:
 
 **Server**: https://github.com/BatshevaYakovson/HMO/tree/master/Server
 
-To create Sql db, run this script in ssms //todo: add script
+To create Sql db,
+create new DB with name `HMO` and run this script in ssms https://github.com/BatshevaYakovson/HMO/blob/master/Server/HmoCreateTablesScript.sql
 # חלק ב
 
 
