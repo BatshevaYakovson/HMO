@@ -21,6 +21,12 @@ create new DB with name `HMO` and run this script in ssms https://github.com/Bat
 **צילומי מסך מצד הclient**
 
 ![HMOPage](https://github.com/BatshevaYakovson/HMO/assets/122361591/dc53a7fe-0752-4244-9961-36e9534544a6)
+![addEmployeepng](https://github.com/BatshevaYakovson/HMO/assets/122361591/b008caac-1a2e-42bc-9682-ca48cdff9b38)
+
+![addDisease](https://github.com/BatshevaYakovson/HMO/assets/122361591/b2060418-fd89-44fc-a73d-f35f646f1a10)
+![addVaccination](https://github.com/BatshevaYakovson/HMO/assets/122361591/7d1fc156-4075-4b7c-ab96-321054ba0345)
+
+![Screenshot 2023-05-11 174633](https://github.com/BatshevaYakovson/HMO/assets/122361591/f66295f1-61fa-460c-9c09-3bb0baab004b)
 
 
 # חלק ב
