@@ -111,3 +111,14 @@ create new DB with name `HMO` and run this script in ssms https://github.com/Bat
 
 
 
+
+
+
+
+**בונוס 2 דיאגרמת db ותרשים הפרויקט**
+
+![diagrams](https://github.com/BatshevaYakovson/HMO/assets/122361591/8fd157ae-e41e-4bf8-a6f3-7669556a1b83)
+![HmoDiagrams](https://github.com/BatshevaYakovson/HMO/assets/122361591/ea53d591-b69d-4d3c-b178-3cfffa161e5c)
+
+
+
