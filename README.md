@@ -16,6 +16,13 @@ To run it please do this cmds on terminal:
 
 To create Sql db,
 create new DB with name `HMO` and run this script in ssms https://github.com/BatshevaYakovson/HMO/blob/master/Server/HmoCreateTablesScript.sql
+
+
+**צילומי מסך מצד הclient**
+
+![HMOPage](https://github.com/BatshevaYakovson/HMO/assets/122361591/dc53a7fe-0752-4244-9961-36e9534544a6)
+
+
 # חלק ב
 
 
