@@ -18,3 +18,5 @@ To create Sql db, run this script in ssms //todo: add script
 # חלק ב
 
 
+א. 
+
