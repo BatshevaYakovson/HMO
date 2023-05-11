@@ -1,6 +1,9 @@
 ﻿################################################################################
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
+/firstHomeExercise/.vs/*
+/firstHomeExercise/firstHomeExercise/bin/*
+/firstHomeExercise/firstHomeExercise/obj/*
 
 /Server/HMO/.vs/*
 /Server/HMO/.vs/HMO/FileContentIndex/3e1292a9-00a2-4a78-a923-5c6f1df96a71.vsidx
@@ -51,3 +54,4 @@
 /Server/HMO/Services/obj/Debug/net6.0/Services.dll
 /Server/HMO/Services/obj/Debug/net6.0/Services.pdb
 /Server/HMO/.vs/HMO/FileContentIndex/read.lock
+

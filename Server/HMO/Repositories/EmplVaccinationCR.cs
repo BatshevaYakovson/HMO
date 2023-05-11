@@ -56,21 +56,9 @@ namespace Repositories
 
         }
 
-        public int CountEmplVaccinationsByEmployeeId(long id)
-        {
-            try
-            {
-                using (HmoDbContext ctx = new())
-                {
-                    return ctx.EmplVaccinations.Count(a => a.EmplVaccinationId == id);
-                }
-            }
 
-            catch (Exception)
-            {
-                throw;
-            }
-        }
+
+
     }
    
 }
