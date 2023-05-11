@@ -4,7 +4,6 @@ import axios from 'axios'
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import dayjs from 'dayjs';
-import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
@@ -74,10 +73,8 @@ export default function EmployeeAdditionForm({ handleClose, open }) {
                         <TextField name='cellPhone' type='tel' label="cellPhone" color="secondary" value={contactInfo.cellPhone} focused onChange={handleChange} />
                         <TextField name='phone' type='tel' label="phone" color="secondary" value={contactInfo.phone} focused onChange={handleChange} />
                         <LocalizationProvider dateAdapter={AdapterDayjs}>
-                            <DemoContainer components={['DatePicker', 'DatePicker']}>
-                                <DatePicker name='bornDate' label="born date" color="secondary" defaultValue={dayjs('2022-05-08')} focused onChange={handleChangeDate} />
+                            <DatePicker name='bornDate' label="born date" color="secondary" focused onChange={handleChangeDate} />
 
-                            </DemoContainer>
                         </LocalizationProvider>
 
                     </div>

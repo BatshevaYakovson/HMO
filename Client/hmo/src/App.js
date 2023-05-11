@@ -25,7 +25,7 @@ function App() {
       </Button>
 
       <EmployeeLists />
-      <EmployeeAdditionForm handleClose={handleClose} open={open}/>
+      <EmployeeAdditionForm handleClose={handleClose} open={open} />
     </div>
   );
 }

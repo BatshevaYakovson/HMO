@@ -2,9 +2,7 @@ import * as React from 'react';
 import { useState } from "react";
 
 import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
 import dayjs from 'dayjs';
-import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
@@ -16,11 +14,12 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 
+
 export default function VaccineAdditionForm({ handleClose, open, employeeId }) {
     const [contactInfo, setContactInfo] = useState({
         employeeId,
-        positiveResultDate: "",
-        recoveryDate: ""
+        positiveResult: "",
+        recovery: ""
     });
 
 
@@ -32,7 +31,7 @@ export default function VaccineAdditionForm({ handleClose, open, employeeId }) {
     const handleSubmit = (event) => {
         event.preventDefault();
         console.log(contactInfo);
-        setContactInfo({ VaccinationDate: "", positiveResultDate: "", });
+        setContactInfo({ VaccinationDate: "", positiveResult: "", });
         handleClose();
     };
 
@@ -51,12 +50,10 @@ export default function VaccineAdditionForm({ handleClose, open, employeeId }) {
                     <div className='box'>
 
                         <LocalizationProvider dateAdapter={AdapterDayjs}>
-                            <DemoContainer components={['DatePicker', 'DatePicker']}>
 
-                                <DatePicker name='VaccinationDate' label="born date" color="secondary" defaultValue={dayjs('2022-05-08')}
-                                    focused onChange={(x) => handleChangeDate(x, 'recoveryDate')} />
+                            <DatePicker name='VaccinationDate' label="born date" color="secondary" defaultValue={dayjs('2022-05-08')}
+                                focused onChange={(x) => handleChangeDate(x, 'recovery')} />
 
-                            </DemoContainer>
                         </LocalizationProvider>
 
                     </div>

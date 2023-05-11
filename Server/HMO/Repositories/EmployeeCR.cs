@@ -1,4 +1,5 @@
-﻿using Microsoft.Identity.Client;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Microsoft.Identity.Client;
 using Repositories.Repository;
 using Repositories.Repository.Interface;
 using Repositories.Repository.Models;
@@ -13,6 +14,11 @@ namespace Repositories
 {
     public class EmployeeCR :IEmployeeCR
     {
+        private readonly IEmplVaccinationCR emplVaccinationCR;
+        public EmployeeCR(IEmplVaccinationCR emplVaccinationCR)
+        {
+            this.emplVaccinationCR = emplVaccinationCR; 
+        }
         //create
         public bool Create(Employee employeeToAdd)
         {
@@ -43,9 +49,25 @@ namespace Repositories
             {
                 using (HmoDbContext ctx = new())
                 {
-                    return id != null && id != 0 ?
-                        ctx.Employees.Where(a => a.EmployeeId == id).ToList() :
-                        ctx.Employees.ToList();
+                    Dictionary<long, EmplVaccination[]> emplVaccinationsDic = emplVaccinationCR.GetEmplVaccinations(null).ToList()
+                        .GroupBy(x=>x.EmployeeId)
+                        .ToDictionary(e=> e.Key, e=> e.ToArray());
+                    return
+                        (from e in ctx.Employees
+                         join d in ctx.Diseases on e.EmployeeId equals d.EmployeeId into ps
+                         from d in ps.DefaultIfEmpty()
+                         select new Employee()
+                         {
+                             Disease = d,
+                             Address = e.Address,
+                             BornDate = e.BornDate,
+                             CellPhone = e.CellPhone,
+                             Phone = e.Phone,
+                             EmployeeId = e.EmployeeId,
+                             FullName = e.FullName,
+                             EmplVaccinations = emplVaccinationsDic.ContainsKey(e.EmployeeId) ? emplVaccinationsDic[e.EmployeeId] : null
+                         }).ToList();
+                       
                 }
             }
 

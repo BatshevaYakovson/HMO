@@ -44,8 +44,32 @@ namespace Repositories
                 using (HmoDbContext ctx = new())
                 {
                     return id != null && id != 0 ?
-                        ctx.EmplVaccinations.Where(a => a.EmplVaccinationId == id).ToList() :
-                        ctx.EmplVaccinations.ToList();
+                        ctx.EmplVaccinations.Where(a => a.EmplVaccinationId == id)
+                        .Join(ctx.Vaccinations,
+                              emplVaccination=> emplVaccination.VaccinationId,
+                              vaccination=> vaccination.VaccinationId,
+                              (emplVaccination, vaccination) => 
+                                        new EmplVaccination{ 
+                                            EmployeeId = emplVaccination.EmployeeId,
+                                            EmplVaccinationId = emplVaccination.EmplVaccinationId,
+                                            VaccinationNum = emplVaccination.VaccinationNum,
+                                            Date = emplVaccination.Date,
+                                            VaccinationId = emplVaccination.VaccinationId,
+                                            Vaccination = emplVaccination.Vaccination,
+                                        }).ToList() :
+                        ctx.EmplVaccinations.Join(ctx.Vaccinations,
+                              emplVaccination => emplVaccination.VaccinationId,
+                              vaccination => vaccination.VaccinationId,
+                              (emplVaccination, vaccination) =>
+                                        new EmplVaccination
+                                        {
+                                            EmployeeId = emplVaccination.EmployeeId,
+                                            EmplVaccinationId = emplVaccination.EmplVaccinationId,
+                                            VaccinationNum = emplVaccination.VaccinationNum,
+                                            Date = emplVaccination.Date,
+                                            VaccinationId = emplVaccination.VaccinationId,
+                                            Vaccination = emplVaccination.Vaccination,
+                                        }).ToList();
                 }
             }
 
@@ -56,7 +80,21 @@ namespace Repositories
 
         }
 
+        public int CountEmplVaccinationsByEmployeeId(long id)
+        {
+            try
+            {
+                using (HmoDbContext ctx = new())
+                {
+                    return ctx.EmplVaccinations.Count(a => a.EmployeeId == id);
+                }
+            }
 
+            catch (Exception)
+            {
+                throw;
+            }
+        }
 
 
     }

@@ -1,5 +1,6 @@
 import { Table, TableCell, TableContainer, TableHead, TableRow, Paper, TableBody, Popover, Typography } from "@mui/material";
 import { useState } from "react";
+import formatDate from '../helper';
 
 export default function EmplVaccinations({ emplVaccinations }) {
     const [popoverOpen, setPopoverOpen] = useState(false);
@@ -15,6 +16,7 @@ export default function EmplVaccinations({ emplVaccinations }) {
         setAnchorEl(null);
 
     }
+   
     return (
         <>
             <Typography
@@ -47,9 +49,9 @@ export default function EmplVaccinations({ emplVaccinations }) {
                     </Table>
                     <TableBody>
                         {
-                            emplVaccinations.map(e => (<TableRow>
+                            emplVaccinations?.map(e => (<TableRow>
                                 <TableCell>{e.vaccination.manufacturer}</TableCell>
-                                <TableCell>{e.date}</TableCell>
+                                <TableCell>{formatDate(e.date)}</TableCell>
                                 <TableCell>{e.vaccinationNum}</TableCell>
                             </TableRow>))
                         }

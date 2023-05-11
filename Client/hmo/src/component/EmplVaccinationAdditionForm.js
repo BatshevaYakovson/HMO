@@ -19,13 +19,25 @@ import DialogTitle from '@mui/material/DialogTitle';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 
-export default function EmplVaccinationAdditionForm({ handleClose, open, employeeId }) {
+export default function EmplVaccinationAdditionForm({ employeeId }) {
+    const [open, setOpen] = useState(false);
     const [vaccinations, setVaccinations] = useState([])
     const [vaccinationInfo, setVaccinationInfo] = useState({
         vaccinationId: "",
         employeeId,
         date: ""
     });
+    const handleClickOpen = () => {
+
+        setOpen(true);
+
+    };
+
+    const handleClose = () => {
+
+        setOpen(false);
+
+    };
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -74,49 +86,50 @@ export default function EmplVaccinationAdditionForm({ handleClose, open, employe
         }).catch(e => console.log(e))
     }
     return (
-        <Dialog open={open} onClose={handleClose}>
-            <DialogTitle>Add vaccination for employee</DialogTitle>
-            <DialogContent>
-                <Box onSubmit={handleSubmit}
-                    component="form"
-                    sx={{
-                        '& > :not(style)': { m: 1, width: '25ch' },
-                    }}
-                    noValidate
-                    autoComplete="off"
-                >
-                    <div className='box'>
+        <><Button variant="outlined" onClick={() => handleClickOpen('vaccine')}>
+            add vaccine   </Button>
+            <Dialog open={open} onClose={handleClose}>
+                <DialogTitle>Add vaccination for employee</DialogTitle>
+                <DialogContent>
+                    <Box onSubmit={handleSubmit}
+                        component="form"
+                        sx={{
+                            '& > :not(style)': { m: 1, width: '25ch' },
+                        }}
+                        noValidate
+                        autoComplete="off"
+                    >
+                        <div className='box'>
 
-                        <InputLabel id="selectVaccination">select vaccination</InputLabel>
-                        <Select
+                            <InputLabel id="selectVaccination">select vaccination</InputLabel>
+                            <Select
 
-                            labelId="selectVaccination"
-                            id="selectVaccination"
-                            value={vaccinationInfo.vaccinationId}
-                            label="vaccination"
-                            onChange={handleChange}
-                        >
-                            {vaccinations.map(v => <MenuItem value={v.vaccinationId}>{v.manufacturer}</MenuItem>)}
+                                labelId="selectVaccination"
+                                id="selectVaccination"
+                                value={vaccinationInfo.vaccinationId}
+                                label="vaccination"
+                                onChange={handleChange}
+                            >
+                                {vaccinations.map(v => <MenuItem value={v.vaccinationId}>{v.manufacturer}</MenuItem>)}
 
 
-                        </Select>
-                        <LocalizationProvider dateAdapter={AdapterDayjs}>
-                            <DemoContainer components={['DatePicker', 'DatePicker']}>
-                                <DatePicker name='date' label="date" color="secondary" defaultValue={dayjs('2022-05-08')} focused
+                            </Select>
+                            <LocalizationProvider dateAdapter={AdapterDayjs}>
+                                <DatePicker name='date' label="date" color="secondary" focused
                                     onChange={(x) => handleChangeDate(x, 'date')} />
 
-                            </DemoContainer>
-                        </LocalizationProvider>
+                            </LocalizationProvider>
 
-                    </div>
+                        </div>
 
-                </Box>
-            </DialogContent>
-            <DialogActions>
-                <Button onClick={handleClose}>Cancel</Button>
-                <Button onClick={handleSubmit} >Save</Button>
-            </DialogActions>
-        </Dialog>
+                    </Box>
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={handleClose}>Cancel</Button>
+                    <Button onClick={handleSubmit} >Save</Button>
+                </DialogActions>
+            </Dialog>
+        </>
     );
 }
 
